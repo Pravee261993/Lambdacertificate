@@ -22,6 +22,20 @@ WebDriver driver;
 	@Parameters({ "browser" })
 	@BeforeTest
 	public void openBrowser(String browser) throws InterruptedException, IOException, AWTException {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability("browserName", "Chrome");
+		capabilities.setCapability("browserVersion", "95.0");
+		HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+		ltOptions.put("platformName", "Windows 10");
+		ltOptions.put("browserName", "Chrome");
+		ltOptions.put("browserVersion","95.0");
+		ltOptions.put("selenium_version","3.13.0");
+		ltOptions.put("console","true");
+		ltOptions.put("network",true);
+		ltOptions.put("visual",true);
+		ltOptions.put("geoLocation","IN");
+		ltOptions.put("driver_version","95.0");
+		capabilities.setCapability("LT:Options", ltOptions);
 			if (browser.equalsIgnoreCase("safari")) {		
 				WebDriver driver = new SafariDriver();	
 			} else if (browser.equalsIgnoreCase("chrome")) {
