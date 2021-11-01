@@ -18,10 +18,10 @@ public class test {
 	
 	public String username = "vijipraveen18";
 	  public String accesskey = "p95GzAfAc8KP218jOh0yMDmzR9oahrrzBYxSZxwFAYVkQHWRLo";
-	  public RemoteWebDriver driver = null;
+	  public RemoteWebDriver driver1 = null;
 	  public String gridURL = "@hub.lambdatest.com/wd/hub";
 	  boolean status = false;
-// WebDriver driver;	
+ WebDriver driver;	
 
 	@Parameters({ "browser" })
 	@BeforeTest
