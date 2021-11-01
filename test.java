@@ -16,32 +16,41 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class test {
 	
-	
-WebDriver driver;	
+	public String username = "vijipraveen18";
+	  public String accesskey = "p95GzAfAc8KP218jOh0yMDmzR9oahrrzBYxSZxwFAYVkQHWRLo";
+	  public RemoteWebDriver driver = null;
+	  public String gridURL = "@hub.lambdatest.com/wd/hub";
+	  boolean status = false;
+// WebDriver driver;	
 
 	@Parameters({ "browser" })
 	@BeforeTest
 	public void openBrowser(String browser) throws InterruptedException, IOException, AWTException {
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("browserName", "Chrome");
-		capabilities.setCapability("browserVersion", "95.0");
-		HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-		ltOptions.put("platformName", "Windows 10");
-		ltOptions.put("browserName", "Chrome");
-		ltOptions.put("browserVersion","95.0");
-		ltOptions.put("selenium_version","3.13.0");
-		ltOptions.put("console","true");
-		ltOptions.put("network",true);
-		ltOptions.put("visual",true);
-		ltOptions.put("geoLocation","IN");
-		ltOptions.put("driver_version","95.0");
-		capabilities.setCapability("LT:Options", ltOptions);
+	      DesiredCapabilities capabilities = new DesiredCapabilities();
+	      capabilities.setCapability("platform", "Windows 10");
+	      capabilities.setCapability("browserName", "Chrome");
+	      capabilities.setCapability("version", "95.0");
+	      capabilities.setCapability("resolution","1024x768");
+	      capabilities.setCapability("build", "LambdaTestSampleApp");
+	      capabilities.setCapability("name", "LambdaTestJavaSample");
+	      capabilities.setCapability("build", "First Test");
+	      capabilities.setCapability("name", "Sample Test");
+	      capabilities.setCapability("network", true); // To enable network logs
+	      capabilities.setCapability("visual", true); // To enable step by step screenshot
+	      capabilities.setCapability("video", true); // To enable video recording
+	      capabilities.setCapability("console", true); // To capture console logs
+	      try {
 			if (browser.equalsIgnoreCase("safari")) {		
 				WebDriver driver = new SafariDriver();	
 			} else if (browser.equalsIgnoreCase("chrome")) {
 				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();	
-	      }
+	      } 
+			driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
+    		
+	      } catch (Exception e) {
+	          System.out.println(e.getMessage());
+	  }
   }
 
 	@Test
